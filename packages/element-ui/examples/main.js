@@ -14,6 +14,18 @@ import App from './App.vue'
 
 const app = createApp(App)
 
+// 尝试引入 VXE Table（如果已安装）
+try {
+    const VxeUI = require('vxe-pc-ui');
+    const VxeTable = require('vxe-table');
+    require('vxe-pc-ui/lib/style.css');
+    require('vxe-table/lib/style.css');
+    app.use(VxeUI.default || VxeUI);
+    app.use(VxeTable.default || VxeTable);
+} catch (e) {
+    console.warn('VXE Table not installed. FcVxeTable will use fallback mode.');
+}
+
 FormCreate.use(install);
 app.use(FormCreate);
 app.component('info', Info);

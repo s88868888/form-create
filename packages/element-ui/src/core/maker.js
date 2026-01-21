@@ -7,6 +7,7 @@ useSelect(maker);
 useTree(maker);
 useUpload(maker);
 useFrame(maker);
+useElTable(maker);
 
 function useAlias(maker) {
     ['group', 'tree', 'switch', 'upload', 'autoComplete', 'checkbox', 'cascader', 'colorPicker', 'datePicker', 'frame', 'inputNumber', 'radio', 'rate'].forEach(name => {
@@ -71,6 +72,18 @@ function useFrame(maker) {
     maker.frameFile = maker.frameFiles;
     maker.frameImage = maker.frameImages;
     return maker;
+}
+
+function useElTable(maker) {
+    maker.elTable = creatorFactory('FcElTable', (m) => {
+        return m.props({
+            border: true,
+            stripe: false,
+            showHeader: true,
+            columns: [],
+            data: []
+        });
+    });
 }
 
 export default maker;
