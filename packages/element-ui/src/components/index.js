@@ -6,6 +6,7 @@ import tree from '@form-create/component-elm-tree/src/index';
 import upload from '@form-create/component-elm-upload/src/index';
 import group from '@form-create/component-elm-group/src/index';
 import subForm from '@form-create/component-subform/src/index';
+import fileList from '@form-create/component-elm-file-list/src/index';
 import IconWarning from './icon/IconWarning.vue';
 import vxeTable from './vxeTable/index';
 import elTable from './elTable/index';
@@ -20,6 +21,7 @@ export default [
     upload,
     group,
     subForm,
+    fileList,
     IconWarning,
     vxeTable,
     elTable,
