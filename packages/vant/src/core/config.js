@@ -31,5 +31,17 @@ export default function getConfig() {
             col: undefined,
             click: undefined,
         },
+        detailBtn: {
+            type: 'primary',
+            loading: false,
+            disabled: false,
+            block: true,
+            innerText: '',
+            size: 'small',
+            show: false,
+            col: undefined,
+            click: undefined,
+            routeName: '',
+        },
     };
 }

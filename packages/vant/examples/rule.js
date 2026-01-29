@@ -288,6 +288,39 @@ export default function mock() {
         },
         {
             type: 'datePicker',
+            title: 'ISO 8601格式测试',
+            field: 'dateISO',
+            value: '2026-01-16T14:09:51.5457+08:00',
+            props: {
+                clearable: true,
+                title: 'ISO 8601格式',
+                format: 'YYYY-MM-DD HH:mm:ss'
+            },
+        },
+        {
+            type: 'datePicker',
+            title: '隐藏箭头',
+            field: 'dateNoArrow',
+            value: '2024-06-12',
+            props: {
+                clearable: true,
+                title: '隐藏箭头',
+                hideArrow: true
+            },
+        },
+        {
+            type: 'datePicker',
+            title: '禁用不变灰',
+            field: 'dateDisabledNoGray',
+            value: '2024-06-12',
+            disabled: true,
+            props: {
+                title: '禁用不变灰',
+                disabledNoGray: true
+            },
+        },
+        {
+            type: 'datePicker',
             title: '年月选择',
             field: 'date2',
             value: '2024-06',
