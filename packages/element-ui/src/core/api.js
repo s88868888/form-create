@@ -102,6 +102,17 @@ export default function extendApi(api, h) {
                 api.resetBtnProps({show: !!isShow});
             }
         },
+        detailBtn: {
+            loading: (loading = true) => {
+                api.detailBtnProps({loading: !!loading});
+            },
+            disabled: (disabled = true) => {
+                api.detailBtnProps({disabled: !!disabled});
+            },
+            show: (isShow = true) => {
+                api.detailBtnProps({show: !!isShow});
+            }
+        },
         submitBtnProps: (props = {}) => {
             let btn = tidyBtnProp(h.options.submitBtn, true);
             extend(btn, props);
@@ -112,6 +123,12 @@ export default function extendApi(api, h) {
             let btn = tidyBtnProp(h.options.resetBtn, false);
             extend(btn, props);
             h.options.resetBtn = btn;
+            api.refreshOptions();
+        },
+        detailBtnProps: (props = {}) => {
+            let btn = tidyBtnProp(h.options.detailBtn, false);
+            extend(btn, props);
+            h.options.detailBtn = btn;
             api.refreshOptions();
         },
         submit(successFn, failFn) {

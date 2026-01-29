@@ -53,7 +53,7 @@ export default {
         }
     },
     tidyOptions(options) {
-        ['submitBtn', 'resetBtn', 'row', 'info', 'wrap', 'col', 'title'].forEach(name => {
+        ['submitBtn', 'resetBtn', 'detailBtn', 'row', 'info', 'wrap', 'col', 'title'].forEach(name => {
             tidyBool(options, name);
         })
         return options;
@@ -222,6 +222,9 @@ export default {
         if (!isFalse(this.options.resetBtn.show)) {
             vn.push(this.makeResetBtn())
         }
+        if (!isFalse(this.options.detailBtn.show)) {
+            vn.push(this.makeDetailBtn())
+        }
         if (!vn.length) {
             return;
         }
@@ -277,6 +280,30 @@ export default {
                 }
             },
             key: `${this.key}b1`,
+        }, [innerText]);
+    },
+    makeDetailBtn() {
+        const detailBtn = {...this.options.detailBtn};
+        const innerText = detailBtn.innerText || this.$handle.api.t('detail') || '查看详情';
+        delete detailBtn.innerText;
+        delete detailBtn.click;
+        delete detailBtn.col;
+        delete detailBtn.show;
+        delete detailBtn.routeName;
+        return this.$r({
+            type: 'button',
+            props: detailBtn,
+            class: 'fc-detail-btn',
+            style: {width: detailBtn.width},
+            on: {
+                click: () => {
+                    const fApi = this.$handle.api;
+                    this.options.detailBtn.click
+                        ? this.options.detailBtn.click(fApi, this.options.detailBtn.routeName)
+                        : console.warn('请配置 detailBtn.click 回调函数');
+                }
+            },
+            key: `${this.key}b3`,
         }, [innerText]);
     }
 }

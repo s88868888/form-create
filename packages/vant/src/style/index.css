@@ -493,3 +493,14 @@
 }
 
 
+
+/* DatePicker 样式 */
+._fc-date-picker--hide-arrow .van-field__right-icon {
+    display: none;
+}
+
+._fc-date-picker--disabled-no-gray .van-field--disabled .van-field__label,
+._fc-date-picker--disabled-no-gray .van-field--disabled .van-field__value,
+._fc-date-picker--disabled-no-gray .van-field--disabled .van-field__control {
+    color: var(--van-field-input-text-color, #323233) !important;
+}

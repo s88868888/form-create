@@ -55,6 +55,7 @@
       <ElRow>
         <ElButton @click="submitBtnProps">设置提交按钮(submitBtnProps)</ElButton>
         <ElButton @click="resetBtnProps">设置重置按钮(resetBtnProps)</ElButton>
+        <ElButton @click="detailBtnProps">设置查看详情按钮(detailBtnProps)</ElButton>
         <ElButton @click="inline">行内模式(updateOptions)</ElButton>
       </ElRow>
       <br/>
@@ -103,7 +104,19 @@ export default defineComponent({
 
 
     //option
-    const option = ref({resetBtn: true, global: {'*': {emit: ['aaa']}}})
+    const option = ref({
+      resetBtn: true,
+      detailBtn: {
+        show: true,
+        innerText: '查看详情',
+        routeName: 'ProjectImplementation',
+        click: (fApi, routeName) => {
+          alert(`点击了查看详情按钮！\n路由名称: ${routeName}\n表单数据: ${JSON.stringify(fApi.formData())}`);
+          console.log('查看详情按钮被点击', {routeName, formData: fApi.formData()});
+        }
+      },
+      global: {'*': {emit: ['aaa']}}
+    })
     const optionJson = ref({})
     onMounted(() => {
       optionJson.value = {...fapi.value.options};
@@ -210,6 +223,13 @@ export default defineComponent({
       optionJson.value = {...fapi.value.options}
     }
 
+    let detailFlag = false;
+    const detailBtnProps = function () {
+      detailFlag = !detailFlag;
+      fapi.value.detailBtnProps({show: detailFlag})
+      optionJson.value = {...fapi.value.options}
+    }
+
     let inlineFlag = false;
     const inline = function () {
       inlineFlag = !inlineFlag;
@@ -297,6 +317,7 @@ export default defineComponent({
       disabled2,
       submitBtnProps,
       resetBtnProps,
+      detailBtnProps,
       inline,
       refresh,
       hideForm,
