@@ -332,7 +332,7 @@ export default defineComponent({
                     }}
                     onCheckboxChange={this.handleSelectionChange}
                     onCheckboxAll={this.handleSelectionChange}
-                    onCellDblclick={({row}) => this.handleRowDblClick(row)}
+                    onCellDblclick={this.handleRowDblClick}
                 >
                     {/* 复选框列 */}
                     <vxe-column 
@@ -361,44 +361,46 @@ export default defineComponent({
                     )}
                     
                     {/* 操作列 */}
-                    <vxe-column
-                        title="操作"
-                        width="120"
-                        align="center"
-                        class-name="_fc-file-list-action-column"
-                    >
-                        {{
-                            default: ({row}) => {
-                                if (!row) return null;
-                                return (
-                                    <div class="_fc-file-list-row-actions">
-                                        <button
-                                            class="_fc-action-btn"
-                                            title="预览"
-                                            onClick={(e) => {
-                                                e.stopPropagation();
-                                                this.handlePreview(row);
-                                            }}
-                                        >
-                                            {h(ViewIcon)}
-                                        </button>
-                                        {this.showDownload && (
+                    {this.showActions && (
+                        <vxe-column
+                            title="操作"
+                            width="120"
+                            align="center"
+                            class-name="_fc-file-list-action-column"
+                        >
+                            {{
+                                default: ({row}) => {
+                                    if (!row) return null;
+                                    return (
+                                        <div class="_fc-file-list-row-actions">
                                             <button
                                                 class="_fc-action-btn"
-                                                title="下载"
+                                                title="预览"
                                                 onClick={(e) => {
                                                     e.stopPropagation();
-                                                    this.handleDownload(row);
+                                                    this.handlePreview(row);
                                                 }}
                                             >
-                                                {h(DownloadIcon)}
+                                                {h(ViewIcon)}
                                             </button>
-                                        )}
-                                    </div>
-                                );
-                            }
-                        }}
-                    </vxe-column>
+                                            {this.showDownload && (
+                                                <button
+                                                    class="_fc-action-btn"
+                                                    title="下载"
+                                                    onClick={(e) => {
+                                                        e.stopPropagation();
+                                                        this.handleDownload(row);
+                                                    }}
+                                                >
+                                                    {h(DownloadIcon)}
+                                                </button>
+                                            )}
+                                        </div>
+                                    );
+                                }
+                            }}
+                        </vxe-column>
+                    )}
                 </vxe-table>
 
                 {/* 图片预览对话框 */}
