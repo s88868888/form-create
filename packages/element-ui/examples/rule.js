@@ -403,6 +403,28 @@ export default function mock() {
             ],
         }).validate([
             {required: true, type: 'array', min: 2, message: '至少选择2个', trigger: 'change'}
-        ])
+        ]),
+
+        // fcFileList 附件列表组件
+        {
+            type: 'fcFileList',
+            field: 'attachments',
+            title: '附件列表',
+            value: [],  // 🔥 空数组，会显示假数据
+            props: {
+                showSize: true,
+                showDownload: true,
+                showBatchDownload: true,
+                showDownloadAll: true
+            },
+            on: {
+                preview: (file) => {
+                    console.log('预览文件:', file)
+                },
+                download: (file) => {
+                    console.log('下载文件:', file)
+                }
+            }
+        }
     ];
 }

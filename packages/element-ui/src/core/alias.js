@@ -32,4 +32,7 @@ export default {
     array: 'fc-group',
     object: 'fc-sub-form',
     subForm: 'fc-sub-form',
+    vxeTable: 'FcVxeTable',
+    elTable: 'FcElTable',
+    fileList: 'fcFileList',
 }

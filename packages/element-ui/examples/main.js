@@ -37,11 +37,13 @@ app.component('info', Info);
 // import VJsoneditor from 'v-jsoneditor'
 import addressEffect from './addressEffect';
 import wangEditor from '@form-create/component-wangeditor/src'
+import FcFileList from '../../../components/element-ui/file-list/src/component.jsx'
 
 
 // app.use(VJsoneditor)
 FormCreate.register(addressEffect);
 FormCreate.component('wangEditor', wangEditor);
+FormCreate.component('fcFileList', FcFileList);  // 🔥 注册附件列表组件
 
 //自定义组件
 FormCreate.component('testSlot', defineComponent({

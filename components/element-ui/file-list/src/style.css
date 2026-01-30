@@ -1,22 +1,128 @@
 ._fc-file-list {
   width: 100%;
+  background: #fff;
 }
 
 ._fc-file-list-empty {
-  padding: 20px;
+  padding: 40px;
   text-align: center;
+  background: #fff;
+  border: 1px solid #e4e7ed;
+  border-radius: 4px;
 }
 
-._fc-file-list-toolbar {
-  margin-bottom: 12px;
+/* 顶部操作栏 */
+._fc-file-list-header {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 12px 16px;
+  background: #fff;
+  border-bottom: 1px solid #e4e7ed;
+}
+
+._fc-file-list-header-left {
+  display: flex;
+  align-items: center;
+}
+
+._fc-file-list-header-left .el-checkbox {
+  font-size: 14px;
+  color: #606266;
+}
+
+._fc-file-list-header-right {
   display: flex;
   gap: 8px;
 }
 
+/* 批量下载按钮 - 紫色 */
+._fc-batch-download-btn {
+  background: #e8e3ff;
+  color: #6c5ce7;
+  border: 1px solid #d3ccf5;
+}
+
+._fc-batch-download-btn:hover:not(:disabled) {
+  background: #d3ccf5;
+  color: #6c5ce7;
+  border-color: #c4b9f0;
+}
+
+._fc-batch-download-btn:disabled {
+  background: #f5f5f5;
+  color: #c0c4cc;
+  border-color: #e4e7ed;
+  cursor: not-allowed;
+}
+
+/* 下载全部按钮 - 蓝色 */
+._fc-file-list-header-right .el-button--primary {
+  background: #409eff;
+  border-color: #409eff;
+}
+
+._fc-file-list-header-right .el-button--primary:hover {
+  background: #66b1ff;
+  border-color: #66b1ff;
+}
+
+/* VXE Table 样式 */
+._fc-file-list .vxe-table {
+  font-size: 14px;
+  border: 1px solid #e4e7ed;
+  border-top: none;
+}
+
+._fc-file-list .vxe-table .vxe-header--column {
+  background-color: #fafafa;
+  font-weight: 500;
+  color: #606266;
+  font-size: 14px;
+  padding: 4px 0;
+  height: 32px;
+  line-height: 32px;
+}
+
+._fc-file-list .vxe-table .vxe-body--row {
+  font-size: 14px;
+  color: #606266;
+}
+
+._fc-file-list .vxe-table .vxe-body--row:hover {
+  background-color: #f5f7fa;
+}
+
+._fc-file-list .vxe-table .vxe-cell {
+  padding: 8px 4px;
+}
+
+._fc-file-list .vxe-table .vxe-body--row {
+  height: auto;
+  min-height: 40px;
+}
+
+/* 去除 vxe-table 的圆角和边框 */
+._fc-file-list .vxe-table.is--round {
+  border-radius: 0;
+}
+
+._fc-file-list .vxe-table--border-line {
+  border-left: none;
+  border-right: none;
+}
+
+/* 文件名列样式 */
 ._fc-file-list-name {
   display: flex;
   align-items: center;
   gap: 8px;
+  padding-left: 4px;
+}
+
+._fc-file-list-icon {
+  flex-shrink: 0;
+  color: #409eff;
 }
 
 ._fc-file-list-name-text {
@@ -24,22 +130,147 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  color: #303133;
+  font-size: 14px;
 }
 
-._fc-file-list-actions {
+/* 行内操作按钮 */
+._fc-file-list-row-actions {
   display: flex;
-  gap: 8px;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
 }
 
+/* 原生操作按钮样式 */
+._fc-action-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: #409eff;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.2s;
+}
+
+._fc-action-btn:hover {
+  background-color: rgba(64, 158, 255, 0.1);
+  color: #66b1ff;
+}
+
+._fc-action-btn svg {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+}
+
+._fc-file-list-row-actions .el-button {
+  padding: 4px 6px;
+  font-size: 18px;
+  height: auto;
+  min-width: auto;
+  color: #409eff;
+}
+
+._fc-file-list-row-actions .el-button + .el-button {
+  margin-left: 0;
+}
+
+._fc-file-list-row-actions .el-button:hover {
+  background-color: rgba(64, 158, 255, 0.1);
+  border-radius: 4px;
+  color: #66b1ff;
+}
+
+/* 内联 SVG 图标样式 */
+._fc-action-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  width: 18px;
+  height: 18px;
+}
+
+._fc-action-icon svg {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+}
+
+._fc-btn-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 4px;
+}
+
+._fc-btn-icon svg {
+  width: 14px;
+  height: 14px;
+  fill: currentColor;
+}
+
+._fc-file-list-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: #409eff;
+  font-size: 18px;
+}
+
+._fc-file-list-icon svg {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+}
+
+/* 操作列确保图标可见 */
+._fc-file-list-action-column .vxe-cell {
+  overflow: visible !important;
+}
+
+._fc-file-list .vxe-table--body-wrapper ._fc-file-list-row-actions {
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* 图片预览 */
 ._fc-file-list-preview {
   display: flex;
   justify-content: center;
   align-items: center;
   max-height: 70vh;
   overflow: auto;
+  background: #f5f5f5;
+  padding: 20px;
 }
 
 ._fc-file-list-preview img {
   max-width: 100%;
   height: auto;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
 }
+
+/* 复选框样式优化 */
+._fc-file-list .vxe-checkbox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 表格斑马纹 */
+._fc-file-list .vxe-table .vxe-body--row.row--stripe {
+  background-color: #fafafa;
+}
+
+._fc-file-list .vxe-table .vxe-body--row.row--stripe:hover {
+  background-color: #f5f7fa;
+}
+
