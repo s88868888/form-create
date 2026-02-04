@@ -59,7 +59,7 @@ export default defineComponent({
                 model-value={this.modelValue} border={false} isLink v-slots={{
                     'right-icon': clearIcon
                 }}/>
-            <van-popup show={this.show} onUpdate:show={(v) => this.show = v} round position="bottom">
+            <van-popup show={this.show} onUpdate:show={(v) => this.show = v} round position="bottom" teleport="body">
                 <van-time-picker
                     columnsType={['hour', 'minute']}
                     {...this.$attrs}

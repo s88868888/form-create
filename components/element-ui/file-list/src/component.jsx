@@ -166,35 +166,7 @@ export default defineComponent({
             
             // 🔥 如果列表为空，返回三条假数据
             if (!list || list.length === 0) {
-                return [
-                    {
-                        name: '屏幕截图 2025-06-17 215830.png',
-                        url: 'https://via.placeholder.com/800x600.png?text=Image+1',
-                        size: 87720,
-                        id: 0,
-                        type: 'image',
-                        icon: 'Picture',
-                        sizeText: '85.66 KB'
-                    },
-                    {
-                        name: '屏幕截图 2025-05-22 155321.png',
-                        url: 'https://via.placeholder.com/800x600.png?text=Image+2',
-                        size: 156800,
-                        id: 1,
-                        type: 'image',
-                        icon: 'Picture',
-                        sizeText: '153.13 KB'
-                    },
-                    {
-                        name: '招标书.pdf',
-                        url: 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf',
-                        size: 294700,
-                        id: 2,
-                        type: 'pdf',
-                        icon: 'Document',
-                        sizeText: '287.79 KB'
-                    }
-                ];
+                return [];
             }
             
             return list.map((file, index) => ({
@@ -283,7 +255,11 @@ export default defineComponent({
         }
     },
     render() {
-        // 🔥 移除空状态判断，让假数据也能显示
+        // 🔥 如果没有文件，不渲染任何内容
+        // if (!this.hasFiles) {
+        //     return null;
+        // }
+
         return (
             <div class="_fc-file-list">
                 {/* 顶部操作栏 */}

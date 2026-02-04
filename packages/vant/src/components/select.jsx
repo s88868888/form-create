@@ -63,7 +63,7 @@ export default defineComponent({
         return <div class="_fc-select">
             <van-field ref="el" placeholder={this.placeholder} readonly disabled={this.$props.disabled} onClick={this.open}
                 model-value={this.inputValue} isLink/>
-            <van-popup show={this.show} onUpdate:show={(v) => this.show = v} round position="bottom">
+            <van-popup show={this.show} onUpdate:show={(v) => this.show = v} round position="bottom" teleport="body">
                 <van-picker
                     {...this.$attrs}
                     modelValue={[this.modelValue]}

@@ -4,6 +4,10 @@ export default function getConfig() {
             required: 'auto',
             labelAlign: 'right',
             inputAlign: 'right',
+            labelColor: '#9ca3af',
+            labelBold: false,
+            valueColor: '#111827',
+            valueBold: false,
         },
         row: {
             show: true,

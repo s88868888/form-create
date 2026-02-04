@@ -8,7 +8,8 @@ import Radio from './radio';
 import DatePicker from './datePicker';
 import TimePicker from './timePicker';
 import Group from './group';
-import IconWarning from './icon/IconWarning.vue';
+import FileList from './fileList';
+import IconWarning from './icon/IconWarning.jsx';
 
 
 export default [
@@ -23,4 +24,5 @@ export default [
     TimePicker,
     Group,
     Uploader,
+    FileList,
 ]

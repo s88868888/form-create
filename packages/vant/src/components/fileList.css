@@ -1,0 +1,73 @@
+/* 移动端附件列表样式 */
+._fc-file-list-mobile {
+  width: 100%;
+  background: #fff;
+}
+
+._fc-file-list-mobile-empty {
+  padding: 40px 0;
+  background: #fff;
+}
+
+._fc-file-list-mobile-item {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  background: #fff;
+  border-bottom: 1px solid #ebedf0;
+  transition: background-color 0.2s;
+}
+
+._fc-file-list-mobile-item:active {
+  background-color: #f7f8fa;
+}
+
+._fc-file-list-mobile-item:last-child {
+  border-bottom: none;
+}
+
+._fc-file-list-mobile-icon {
+  flex-shrink: 0;
+  margin-right: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+._fc-file-list-mobile-content {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+}
+
+._fc-file-list-mobile-name {
+  font-size: 14px;
+  color: #323233;
+  line-height: 20px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-bottom: 4px;
+}
+
+._fc-file-list-mobile-size {
+  font-size: 12px;
+  color: #969799;
+  line-height: 16px;
+}
+
+._fc-file-list-mobile-action {
+  flex-shrink: 0;
+  margin-left: 8px;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: all 0.2s;
+}
+
+._fc-file-list-mobile-action:active {
+  opacity: 0.6;
+  background-color: #f2f3f5;
+}

@@ -6,5 +6,8 @@ module.exports = {
                 useBuiltIns: false
             }
         ]
+    ],
+    plugins: [
+        '@vue/babel-plugin-jsx'
     ]
 }

@@ -135,7 +135,7 @@ export default defineComponent({
                 model-value={this.displayValue} border={false} isLink={!this.$props.hideArrow} v-slots={{
                     'right-icon': clearIcon
                 }}/>
-            <van-popup show={this.show} onUpdate:show={(v) => this.show = v} round position="bottom">
+            <van-popup show={this.show} onUpdate:show={(v) => this.show = v} round position="bottom" teleport="body">
                 <van-date-picker
                     columnsType={['year', 'month', 'day']}
                     {...{...this.$attrs, ...this.dateRange}}

@@ -28,4 +28,5 @@ export default {
     array: 'fc-group',
     object: 'fc-sub-form',
     subForm: 'fc-sub-form',
+    fileList: 'fcFileList',
 }

@@ -121,7 +121,20 @@ export default {
     beforeRender() {
         const {key, ref} = this;
         const form = this.options.form;
-        extend(this.rule, {key, ref, class: [form.className, form.class, 'form-create-m', this.$handle.preview ? 'is-preview' : '']});
+        
+        // 构建样式对象，包含 CSS 变量
+        const formStyle = {
+            ...(form.style || {}),
+            '--fc-value-color': form.valueColor || '#111827',
+            '--fc-value-bold': form.valueBold ? 'bold' : 'normal',
+        };
+        
+        extend(this.rule, {
+            key, 
+            ref, 
+            class: [form.className, form.class, 'form-create-m', this.$handle.preview ? 'is-preview' : ''],
+            style: formStyle
+        });
     },
     render(children) {
         if (children.slotLen() && !this.$handle.preview) {
@@ -175,11 +188,20 @@ export default {
             }));
         }
 
+        // 应用 label 颜色和加粗样式
+        const form = this.options.form;
+        const labelStyle = {
+            ...(form.labelColor ? {color: form.labelColor} : {}),
+            ...(form.labelBold ? {fontWeight: 'bold'} : {}),
+        };
+        const styleStr = Object.keys(labelStyle).map(key => `${key.replace(/([A-Z])/g, '-$1').toLowerCase()}:${labelStyle[key]}`).join(';');
+
         const _prop = mergeProps([titleProp, {
             props: tidyRule(titleProp),
             key: `${uni}tit`,
             class: 'fc-form-title',
             type: titleProp.type || 'span',
+            style: styleStr || undefined,
             on: {
                 click: (...args) => {
                     if (flag && infoProp.info) {

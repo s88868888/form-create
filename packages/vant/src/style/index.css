@@ -499,8 +499,29 @@
     display: none;
 }
 
-._fc-date-picker--disabled-no-gray .van-field--disabled .van-field__label,
-._fc-date-picker--disabled-no-gray .van-field--disabled .van-field__value,
-._fc-date-picker--disabled-no-gray .van-field--disabled .van-field__control {
+/* 默认禁用状态显示灰色 - 使用 :not() 提高优先级，同时覆盖 -webkit-text-fill-color */
+._fc-date-picker:not(._fc-date-picker--disabled-no-gray) .van-field--disabled .van-field__label,
+._fc-date-picker:not(._fc-date-picker--disabled-no-gray) .van-field--disabled .van-field__value,
+._fc-date-picker:not(._fc-date-picker--disabled-no-gray) .van-field--disabled .van-field__control {
+    color: var(--van-field-disabled-text-color, #c8c9cc) !important;
+    -webkit-text-fill-color: var(--van-field-disabled-text-color, #c8c9cc) !important;
+}
+
+/* 禁用时不变灰色的配置项 - 增加选择器权重，同时覆盖 -webkit-text-fill-color */
+._fc-date-picker._fc-date-picker--disabled-no-gray .van-field--disabled .van-field__label,
+._fc-date-picker._fc-date-picker--disabled-no-gray .van-field--disabled .van-field__value,
+._fc-date-picker._fc-date-picker--disabled-no-gray .van-field--disabled .van-field__control {
     color: var(--van-field-input-text-color, #323233) !important;
+    -webkit-text-fill-color: var(--van-field-input-text-color, #323233) !important;
+}
+
+/* 表单 value 颜色和加粗配置 */
+.form-create-m .van-field__control,
+.form-create-m .van-field__value {
+    color: var(--fc-value-color, #111827);
+    font-weight: var(--fc-value-bold, normal);
+}
+
+.form-create-m .van-field__control::placeholder {
+    color: var(--van-field-placeholder-text-color, #c8c9cc);
 }
