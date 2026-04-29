@@ -134,7 +134,7 @@ export default {
         delete rule.wrap.class;
         delete rule.wrap.title;
         let item
-        if (isFalse(rule.wrap.show)) {
+        if ((is.Undef(rule.wrap.show) ? !ctx.input : isFalse(rule.wrap.show))) {
             item = children
         } else {
             item = this.$r(mergeProps([rule.wrap, {
@@ -210,7 +210,8 @@ export default {
         return this.$r(_prop, children);
     },
     makeCol(rule, uni, children) {
-        const col = rule.col;
+        const col = {...rule.col};
+        delete col.show;
         return this.$r({
             class: this.$render.mergeClass(col.class, 'fc-form-col'),
             type: 'col',

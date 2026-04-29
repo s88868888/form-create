@@ -298,7 +298,9 @@ export interface BaseRule<OptionAttrs, CreatorAttrs, RuleAttrs, ApiAttrs> extend
     emitPrefix?: string;
     value?: any;
     ignore?: Boolean | 'hidden';
-    computed?: string | ((formData: FormData, api: Api<OptionAttrs, CreatorAttrs, RuleAttrs, ApiAttrs>) => any);
+    computed?: {
+        [key: string]: (formData: FormData, api: Api<OptionAttrs, CreatorAttrs, RuleAttrs, ApiAttrs>, rule: Rule<OptionAttrs, CreatorAttrs, RuleAttrs, ApiAttrs>) => any;
+    }
     emit?: Array<string | { name: string; inject: any }>;
     link?: string[];
     sync?: string[];
@@ -348,6 +350,10 @@ export interface BaseRule<OptionAttrs, CreatorAttrs, RuleAttrs, ApiAttrs> extend
             api: Api<OptionAttrs, CreatorAttrs, RuleAttrs, ApiAttrs>
         }) => void;
         mounted?: (evt: {
+            rule: Rule<OptionAttrs, CreatorAttrs, RuleAttrs, ApiAttrs>,
+            api: Api<OptionAttrs, CreatorAttrs, RuleAttrs, ApiAttrs>
+        }) => void;
+        beforeUnmount?: (evt: {
             rule: Rule<OptionAttrs, CreatorAttrs, RuleAttrs, ApiAttrs>,
             api: Api<OptionAttrs, CreatorAttrs, RuleAttrs, ApiAttrs>
         }) => void;
@@ -543,6 +549,7 @@ export interface BaseOptions<OptionAttrs, CreatorAttrs, RuleAttrs, ApiAttrs> {
     mounted?: (api: Api<OptionAttrs, CreatorAttrs, RuleAttrs, ApiAttrs>) => void;
     reload?: (api: Api<OptionAttrs, CreatorAttrs, RuleAttrs, ApiAttrs>) => void;
     onMounted?: (api: Api<OptionAttrs, CreatorAttrs, RuleAttrs, ApiAttrs>) => void;
+    onBeforeUnmount?: (api: Api<OptionAttrs, CreatorAttrs, RuleAttrs, ApiAttrs>) => void;
     onReload?: (api: Api<OptionAttrs, CreatorAttrs, RuleAttrs, ApiAttrs>) => void;
     onChange?: (field: string, value: any, opt: {
         rule: Rule<OptionAttrs, CreatorAttrs, RuleAttrs, ApiAttrs>;
@@ -785,6 +792,7 @@ export interface Effect<OptionAttrs, CreatorAttrs, RuleAttrs, ApiAttrs> {
     control?: (data: EffectValue, rule: Rule<OptionAttrs, CreatorAttrs, RuleAttrs, ApiAttrs>, api: Api<OptionAttrs, CreatorAttrs, RuleAttrs, ApiAttrs>) => void;
     deleted?: (data: EffectValue, rule: Rule<OptionAttrs, CreatorAttrs, RuleAttrs, ApiAttrs>, api: Api<OptionAttrs, CreatorAttrs, RuleAttrs, ApiAttrs>) => void;
     mounted?: (data: EffectValue, rule: Rule<OptionAttrs, CreatorAttrs, RuleAttrs, ApiAttrs>, api: Api<OptionAttrs, CreatorAttrs, RuleAttrs, ApiAttrs>) => void;
+    beforeUnmount?: (data: EffectValue, rule: Rule<OptionAttrs, CreatorAttrs, RuleAttrs, ApiAttrs>, api: Api<OptionAttrs, CreatorAttrs, RuleAttrs, ApiAttrs>) => void;
 }
 
 export interface Slots {

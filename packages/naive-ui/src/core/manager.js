@@ -113,7 +113,7 @@ export default {
         const cls = rule.wrap.class;
         delete rule.wrap.class;
         delete rule.wrap.title;
-        const item = isFalse(rule.wrap.show) ? children : this.$r(mergeProps([rule.wrap, {
+        const item = (is.Undef(rule.wrap.show) ? !ctx.input : isFalse(rule.wrap.show)) ? children : this.$r(mergeProps([rule.wrap, {
             props: {
                 ...tidyRule(rule.wrap || {}),
                 path: ctx.id,
@@ -183,7 +183,8 @@ export default {
         return this.$r(_prop, children);
     },
     makeCol(rule, uni, children) {
-        const col = rule.col;
+        const col = {...rule.col};
+        delete col.show;
         return this.$r({
             class: this.$render.mergeClass(col.class, 'fc-form-col'),
             type: 'col',
