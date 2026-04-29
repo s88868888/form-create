@@ -124,7 +124,11 @@ export default defineComponent({
         },
         showSize: {
             type: Boolean,
-            default: true
+            default: false
+        },
+        showOperator: {
+            type: Boolean,
+            default: false
         },
         showDownload: {
             type: Boolean,
@@ -163,12 +167,11 @@ export default defineComponent({
     computed: {
         fileList() {
             const list = toArray(this.modelValue);
-            
-            // 🔥 如果列表为空，返回三条假数据
+
             if (!list || list.length === 0) {
                 return [];
             }
-            
+
             return list.map((file, index) => ({
                 ...file,
                 id: index,
@@ -335,7 +338,17 @@ export default defineComponent({
                             align="center"
                         />
                     )}
-                    
+
+                    {/* 上传人列 */}
+                    {this.showOperator && (
+                        <vxe-column
+                            field="operator"
+                            title="上传人"
+                            width="100"
+                            align="center"
+                        />
+                    )}
+
                     {/* 操作列 */}
                     {this.showActions && (
                         <vxe-column
@@ -349,16 +362,20 @@ export default defineComponent({
                                     if (!row) return null;
                                     return (
                                         <div class="_fc-file-list-row-actions">
-                                            <button
-                                                class="_fc-action-btn"
-                                                title="预览"
-                                                onClick={(e) => {
-                                                    e.stopPropagation();
-                                                    this.handlePreview(row);
-                                                }}
-                                            >
-                                                {h(ViewIcon)}
-                                            </button>
+                                            <span class="_fc-action-placeholder">
+                                                {row.type === 'image' ? (
+                                                    <button
+                                                        class="_fc-action-btn"
+                                                        title="预览"
+                                                        onClick={(e) => {
+                                                            e.stopPropagation();
+                                                            this.handlePreview(row);
+                                                        }}
+                                                    >
+                                                        {h(ViewIcon)}
+                                                    </button>
+                                                ) : null}
+                                            </span>
                                             {this.showDownload && (
                                                 <button
                                                     class="_fc-action-btn"

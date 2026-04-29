@@ -48,7 +48,10 @@ export const targets = (dir: 'packages' | 'components' = 'packages') => {
         continue;
       }
       const pkg = require(`${projRoot}/${dir}/${uiPath}/package.json`)
-      fs.rmdirSync(`${projRoot}/${dir}/${uiPath}/dist`, { recursive: true });
+      const distPath = `${projRoot}/${dir}/${uiPath}/dist`;
+      if (fs.existsSync(distPath)) {
+        fs.rmdirSync(distPath, { recursive: true });
+      }
       if (pkg.private || !pkg.buildFormCreateOptions) {
         red(`\n info: ${projRoot}/${dir}/${uiPath}/package.json private is true or buildFormCreateOptions is not exists!`)
         continue;
@@ -70,7 +73,10 @@ export const targets = (dir: 'packages' | 'components' = 'packages') => {
           continue;
         }
         const pkg = require(`${projRoot}/${dir}/${uiPath}/${comPath}/package.json`)
-        fs.rmdirSync(`${projRoot}/${dir}/${uiPath}/${comPath}/dist`, { recursive: true });
+        const distPath = `${projRoot}/${dir}/${uiPath}/${comPath}/dist`;
+        if (fs.existsSync(distPath)) {
+          fs.rmdirSync(distPath, { recursive: true });
+        }
         if (pkg.private || !pkg.buildFormCreateOptions) {
           red(`\n info: ${projRoot}/${dir}/${uiPath}/${comPath}/package.json private is true or buildFormCreateOptions is not exists!`)
           continue;
@@ -99,7 +105,10 @@ export const getSingleComponentPaths = (dir: string = 'components', libname: str
   }
 
   const pkg = require(`${projRoot}/${_rootPath}/${_libPath}/${_compPath}/package.json`)
-  fs.rmdirSync(`${projRoot}/${_rootPath}/${_libPath}/${_compPath}/dist`, { recursive: true });
+  const distPath = `${projRoot}/${_rootPath}/${_libPath}/${_compPath}/dist`;
+  if (fs.existsSync(distPath)) {
+    fs.rmdirSync(distPath, { recursive: true });
+  }
   if (pkg.private || !pkg.buildFormCreateOptions) {
     red(`\n info: ${projRoot}/${_rootPath}/${_libPath}/${_compPath}/package.json private is true or buildFormCreateOptions is not exists!`)
     return
@@ -119,7 +128,10 @@ export const getSinglePackagePaths = (dir: string = 'packages', libname: string 
   }
 
   const pkg = require(`${projRoot}/${_rootPath}/${_libPath}/package.json`)
-  fs.rmdirSync(`${projRoot}/${_rootPath}/${_libPath}/dist`, { recursive: true });
+  const distPath = `${projRoot}/${_rootPath}/${_libPath}/dist`;
+  if (fs.existsSync(distPath)) {
+    fs.rmdirSync(distPath, { recursive: true });
+  }
   if (pkg.private || !pkg.buildFormCreateOptions) {
     red(`\n info: ${projRoot}/${_rootPath}/${_libPath}/package.json private is true or buildFormCreateOptions is not exists!`)
     return
@@ -133,7 +145,10 @@ export const getSinglePackagePaths = (dir: string = 'packages', libname: string 
 export const getFolderNames = (folder: string, uiFolder: string) => {
   return fs.readdirSync(`${folder}/${uiFolder}`).map(uiFolderPath => {
     if (fs.statSync(`${projRoot}/${folder}/${uiFolder}`).isDirectory()) {
-      fs.rmdirSync(`${projRoot}/${folder}/${uiFolder}/dist`, { recursive: true });
+      const distPath = `${projRoot}/${folder}/${uiFolder}/dist`;
+      if (fs.existsSync(distPath)) {
+        fs.rmdirSync(distPath, { recursive: true });
+      }
       return `${uiFolder}/${uiFolderPath}`
     }
   })
